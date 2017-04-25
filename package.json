@@ -6,13 +6,20 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "nm": "nodemon server.js --watch "
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "heroku-nextjs-build"
   },
+   "engines": {
+    "node": "6.9.x"
+  },
+  "cacheDirectories": [
+    "nextjs/node_modules"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mars/heroku-nextjs-build": "^2.0.0",
     "express": "^4.15.2",
     "next": "^2.2.0",
     "nodemon": "^1.11.0",
