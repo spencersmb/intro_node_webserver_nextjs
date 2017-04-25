@@ -12,45 +12,59 @@ app.prepare()
   const server = express()
 
   //custom middlewares
-  // server.use( ( req, res, next) => {
+  server.use( ( req, res, next) => {
 
-  //     //create readable date
-  //     const now = new Date().toString();
-  //     let log;
+      //create readable date
+      const now = new Date().toString();
+      let log;
 
-  //     if( req.url === '/_next/on-demand-entries-ping?page=/'){
-  //       return;
-  //     }
+      if( req.url === '/_next/on-demand-entries-ping?page=/'){
+        return;
+      }
 
-  //     log = `${now}: ${req.method} ${req.url}`;
+      if( req.url === '/_next/on-demand-entries-ping?page=/projects'){
+        return;
+      }
 
-  //     fs.appendFile(
-  //         'server.log', 
-  //         log + '\n',
-  //         (err) => {
-  //             if(err){
-  //                 console.log('Unable to append to server.log');
-  //             }
-  //         }  
-  //     );
+      if( req.url === '/_next/on-demand-entries-ping?page=/about'){
+        return;
+      }
 
-  //     console.log("--------------");
-  //     console.log("--------------");
-  //     console.log(`${now}`);
-  //     console.log(`Method: ${req.method}`);
-  //     console.log(`Url: ${req.url}`);
-  //     console.log("--------------");
-  //     console.log("--------------");
+      log = `${now}: ${req.method} ${req.url}`;
 
-  //     //call next when you are done
-  //     next();
+      fs.appendFile(
+          'server.log', 
+          log + '\n',
+          (err) => {
+              if(err){
+                  console.log('Unable to append to server.log');
+              }
+          }  
+      );
 
-  // });
+      console.log("--------------");
+      console.log("--------------");
+      console.log(`${now}`);
+      console.log(`Method: ${req.method}`);
+      console.log(`Url: ${req.url}`);
+      console.log("--------------");
+      console.log("--------------");
+
+      //call next when you are done
+      next();
+
+  });
 
 
   server.get('/about', (req, res) => {
     console.log('about route');
     return app.render(req, res, '/about', req.query)
+  })
+
+  server.get('/projects', (req, res) => {
+    console.log('Projects route');
+    console.log(req.query);
+    return app.render(req, res, '/projects', req.query)
   })
 
   server.get('*', (req, res) => {

@@ -12,6 +12,9 @@ const Nav = () => (
         <Link href="/about" as="/about">
           <a style={linkStyle}>About</a>
         </Link>
+        <Link href="/projects" prefetch>
+          <a style={linkStyle}>Projects</a>
+        </Link>
     </div>
 )
 

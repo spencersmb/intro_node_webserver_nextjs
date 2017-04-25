@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
+    "watch": "nodemon server.js -w server.js",
     "start": "next start -p $PORT",
     "heroku-postbuild": "heroku-nextjs-build"
   },
