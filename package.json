@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "server": "node server.js",
+    "test": "mocha --reporter spec **/*.test.js",
+    "test:watch": "npm run test -- --watch",
+    "dev": "npm-run-all --parallel test:watch server",
     "build": "next build",
     "watch": "nodemon server.js -w server.js",
     "start": "next start -p $PORT",
     "heroku-postbuild": "heroku-nextjs-build"
   },
-   "engines": {
+  "engines": {
     "node": "6.9.x"
   },
   "cacheDirectories": [
@@ -26,5 +29,11 @@
     "nodemon": "^1.11.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "enzyme": "^2.8.2",
+    "mocha": "^3.3.0",
+    "expect": "^1.20.2",
+    "npm-run-all": "^4.0.2"
   }
 }

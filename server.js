@@ -12,48 +12,48 @@ app.prepare()
   const server = express()
 
   //custom middlewares
-  server.use( ( req, res, next) => {
+  // server.use( ( req, res, next) => {
 
-      //create readable date
-      const now = new Date().toString();
-      let log;
+  //     //create readable date
+  //     const now = new Date().toString();
+  //     let log;
 
-      if( req.url === '/_next/on-demand-entries-ping?page=/'){
-        return;
-      }
+  //     if( req.url === '/_next/on-demand-entries-ping?page=/'){
+  //       return;
+  //     }
 
-      if( req.url === '/_next/on-demand-entries-ping?page=/projects'){
-        return;
-      }
+  //     if( req.url === '/_next/on-demand-entries-ping?page=/projects'){
+  //       return;
+  //     }
 
-      if( req.url === '/_next/on-demand-entries-ping?page=/about'){
-        return;
-      }
+  //     if( req.url === '/_next/on-demand-entries-ping?page=/about'){
+  //       return;
+  //     }
 
-      log = `${now}: ${req.method} ${req.url}`;
+  //     log = `${now}: ${req.method} ${req.url}`;
 
-      fs.appendFile(
-          'server.log', 
-          log + '\n',
-          (err) => {
-              if(err){
-                  console.log('Unable to append to server.log');
-              }
-          }  
-      );
+  //     fs.appendFile(
+  //         'server.log', 
+  //         log + '\n',
+  //         (err) => {
+  //             if(err){
+  //                 console.log('Unable to append to server.log');
+  //             }
+  //         }  
+  //     );
 
-      console.log("--------------");
-      console.log("--------------");
-      console.log(`${now}`);
-      console.log(`Method: ${req.method}`);
-      console.log(`Url: ${req.url}`);
-      console.log("--------------");
-      console.log("--------------");
+  //     console.log("--------------");
+  //     console.log("--------------");
+  //     console.log(`${now}`);
+  //     console.log(`Method: ${req.method}`);
+  //     console.log(`Url: ${req.url}`);
+  //     console.log("--------------");
+  //     console.log("--------------");
 
-      //call next when you are done
-      next();
+  //     //call next when you are done
+  //     next();
 
-  });
+  // });
 
 
   server.get('/about', (req, res) => {
